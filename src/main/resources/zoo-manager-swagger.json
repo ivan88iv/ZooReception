@@ -1,0 +1,200 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/animals": {
+      "get": {
+        "tags": [
+          "zoo-manager-controller"
+        ],
+        "operationId": "getAllAnimals",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AnimalDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/animals/{name}": {
+      "get": {
+        "tags": [
+          "zoo-manager-controller"
+        ],
+        "summary": "Get details for an animal by its name",
+        "operationId": "getAnimalDetails",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Animal not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Animal details found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnimalDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AnimalDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "TIGER",
+              "HAWK",
+              "PIG",
+              "ANTELOPE",
+              "LION",
+              "CROCODILE",
+              "SNAKE",
+              "ZEBRA",
+              "HORSE",
+              "DONKEY",
+              "HEN",
+              "SHEEP",
+              "COW",
+              "MONKEY",
+              "ELEPHANT",
+              "DOG",
+              "BEAR"
+            ]
+          },
+          "age": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "M",
+              "F"
+            ]
+          },
+          "foodTypes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "MEAT",
+                "PLANT"
+              ]
+            }
+          }
+        }
+      },
+      "AnimalDetails": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "animalType": {
+            "type": "string",
+            "enum": [
+              "TIGER",
+              "HAWK",
+              "PIG",
+              "ANTELOPE",
+              "LION",
+              "CROCODILE",
+              "SNAKE",
+              "ZEBRA",
+              "HORSE",
+              "DONKEY",
+              "HEN",
+              "SHEEP",
+              "COW",
+              "MONKEY",
+              "ELEPHANT",
+              "DOG",
+              "BEAR"
+            ]
+          },
+          "age": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "M",
+              "F"
+            ]
+          },
+          "acceptableFoods": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FoodDto"
+            }
+          }
+        }
+      },
+      "FoodDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "MEAT",
+              "PLANT"
+            ]
+          },
+          "pricePerKg": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      }
+    }
+  }
+}

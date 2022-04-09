@@ -1,0 +1,5 @@
+server:
+  port: 8091
+
+zooManager:
+  baseUrl: http://localhost:8092

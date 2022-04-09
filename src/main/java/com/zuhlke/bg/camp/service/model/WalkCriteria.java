@@ -1,4 +1,4 @@
-package com.zuhlke.bg.camp.api.model;
+package com.zuhlke.bg.camp.service.model;
 
 import com.zuhlke.bg.camp.api.exception.InvalidCriteriaException;
 
@@ -21,7 +21,11 @@ public enum WalkCriteria {
         return this.name;
     }
 
-    public static WalkCriteria fromValue(String value) {
+    public static WalkCriteria fromValue(final String value) {
+        if(value == null) {
+            return null;
+        }
+
         return Arrays.stream(WalkCriteria.values())
                 .filter((criteria) -> criteria.name.equals(value))
                 .findFirst()

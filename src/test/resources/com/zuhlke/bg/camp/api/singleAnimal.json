@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Eli",
+    "type": "ELEPHANT",
+    "age": 13,
+    "gender": "F",
+    "foodTypes": [
+      "PLANT"
+    ],
+    "cageNumber": 14
+  }
+]

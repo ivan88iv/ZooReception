@@ -11,9 +11,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
     private static final Logger LOGGER = LogManager.getLogger(GlobalExceptionHandler.class);
 
+    @ExceptionHandler(InvalidCriteriaException.class)
+    public ResponseEntity<Void> handleInvalidCriteriaException(InvalidCriteriaException ice) {
+        LOGGER.error("Invalid exception criteria was specified: ", ice);
+        return ResponseEntity.badRequest().build();
+    }
+
     @ExceptionHandler(Throwable.class)
     public ResponseEntity<Void> handlesThrowable(Throwable t) {
-        LOGGER.error("Exception occurred: ", t);
+        LOGGER.error("Unexpected exception occurred: ", t);
         return ResponseEntity.internalServerError().build();
     }
 }

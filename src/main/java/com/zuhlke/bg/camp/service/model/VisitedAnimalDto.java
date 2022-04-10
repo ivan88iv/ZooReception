@@ -15,13 +15,12 @@ public class VisitedAnimalDto {
 
     private final int cageNumber;
 
-    // HIX age -> string
-    private VisitedAnimalDto(final String name,
-                            final String species,
-                            final AnimalCategory category,
-                            final int age,
-                            final Gender gender,
-                            final int cageNumber) {
+    private VisitedAnimalDto(String name,
+                            String species,
+                            AnimalCategory category,
+                            int age,
+                            Gender gender,
+                            int cageNumber) {
         this.name = name;
         this.species = species;
         this.category = category;
@@ -67,32 +66,32 @@ public class VisitedAnimalDto {
 
         private int cageNumber;
 
-        public Builder withName(final String name) {
+        public Builder withName(String name) {
             this.name = name;
             return this;
         }
 
-        public Builder withCategory(final AnimalCategory category) {
+        public Builder withCategory(AnimalCategory category) {
             this.category = category;
             return this;
         }
 
-        public Builder withSpecies(final String species) {
+        public Builder withSpecies(String species) {
             this.species = species;
             return this;
         }
 
-        public Builder withAge(final int age) {
+        public Builder withAge(int age) {
             this.age = age;
             return this;
         }
 
-        public Builder withGender(final Gender gender) {
+        public Builder withGender(Gender gender) {
             this.gender = gender;
             return this;
         }
 
-        public Builder withCageNumber(final int cageNumber) {
+        public Builder withCageNumber(int cageNumber) {
             this.cageNumber = cageNumber;
             return this;
         }

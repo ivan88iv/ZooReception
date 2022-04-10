@@ -19,7 +19,7 @@ public enum WalkCriteria {
         return this.name;
     }
 
-    public static WalkCriteria fromValue(final String value) {
+    public static WalkCriteria fromValue(String value) {
         if(value == null || value.isEmpty()) {
             return null;
         }

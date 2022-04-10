@@ -28,8 +28,8 @@ class FilterGuideService {
         this.herbivorousPredicate = herbivorousPredicate;
     }
 
-    public List<ManagerAnimalDto> filterAnimals(final List<ManagerAnimalDto> animalsToFilter,
-                                                final WalkCriteria criteria) {
+    public List<ManagerAnimalDto> filterAnimals(List<ManagerAnimalDto> animalsToFilter,
+                                                WalkCriteria criteria) {
         if(animalsToFilter == null) {
             return null;
         }

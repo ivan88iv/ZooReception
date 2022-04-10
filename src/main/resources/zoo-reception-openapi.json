@@ -1,0 +1,104 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Zoo Reception API",
+    "description": "Zoo Reception application for Camp Purposes",
+    "version": "v1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8091",
+      "description": "Generated server url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Guide Controller",
+      "description": "Groups operations for guiding through the Zoo"
+    }
+  ],
+  "paths": {
+    "/guide/suggestedWalk/{criteria}": {
+      "get": {
+        "tags": [
+          "Guide Controller"
+        ],
+        "summary": "Returns a suggested walk given a specific criteria",
+        "operationId": "suggestWalk",
+        "parameters": [
+          {
+            "name": "criteria",
+            "in": "path",
+            "description": "The given criteria to find a walk. Can be carnivorous, herbivorous and omnivorous",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "No animals to visit"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "200": {
+            "description": "The suggested walk given the specified criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VisitedAnimalDto"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid criteria provided"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "VisitedAnimalDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "CARNIVOROUS",
+              "HERBIVOROUS",
+              "OMNIVOROUS"
+            ]
+          },
+          "species": {
+            "type": "string"
+          },
+          "age": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "gender": {
+            "type": "string",
+            "enum": [
+              "M",
+              "F"
+            ]
+          },
+          "cageNumber": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    }
+  }
+}

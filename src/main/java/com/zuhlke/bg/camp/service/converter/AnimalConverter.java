@@ -28,17 +28,16 @@ public class AnimalConverter implements Function<ManagerAnimalDto, VisitedAnimal
     }
 
     @Override
-    public VisitedAnimalDto apply(final ManagerAnimalDto managerAnimalDto) {
+    public VisitedAnimalDto apply(ManagerAnimalDto managerAnimalDto) {
         if (managerAnimalDto == null) {
             return null;
         }
 
-        String species = getSpecies(managerAnimalDto.getType());
         AnimalCategory category = getCategory(managerAnimalDto);
 
         return new VisitedAnimalDto.Builder()
                 .withName(managerAnimalDto.getName())
-                .withSpecies(species)
+                .withSpecies(managerAnimalDto.getType())
                 .withCategory(category)
                 .withAge(managerAnimalDto.getAge())
                 .withGender(managerAnimalDto.getGender())
@@ -46,11 +45,7 @@ public class AnimalConverter implements Function<ManagerAnimalDto, VisitedAnimal
                 .build();
     }
 
-    private String getSpecies(final String type) {
-        return type.substring(0, 1).toUpperCase() + type.substring(1).toLowerCase();
-    }
-
-    private AnimalCategory getCategory(final ManagerAnimalDto managerAnimal) {
+    private AnimalCategory getCategory(ManagerAnimalDto managerAnimal) {
         AnimalCategory category = null;
 
         if (herbivorousPredicate.test(managerAnimal)) {

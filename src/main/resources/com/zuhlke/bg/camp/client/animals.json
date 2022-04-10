@@ -3,7 +3,7 @@
     "name": "Evgeni",
     "type": "TIGER",
     "age": 3,
-    "gender": "M",
+    "gender": "MALE",
     "foodTypes": [
       "MEAT"
     ],
@@ -13,7 +13,7 @@
     "name": "Lemi",
     "type": "MOUSE",
     "age": 1,
-    "gender": "M",
+    "gender": "MALE",
     "foodTypes": [
       "MEAT",
       "PLANT"
@@ -24,7 +24,7 @@
     "name": "Roro",
     "type": "DOG",
     "age": 1,
-    "gender": "M",
+    "gender": "MALE",
     "foodTypes": [
       "MEAT",
       "PLANT"
@@ -35,7 +35,7 @@
     "name": "Eli",
     "type": "ELEPHANT",
     "age": 13,
-    "gender": "F",
+    "gender": "FEMALE",
     "foodTypes": [
       "PLANT"
     ],
@@ -45,7 +45,7 @@
     "name": "Kiro",
     "type": "HORSE",
     "age": 7,
-    "gender": "M",
+    "gender": "MALE",
     "foodTypes": [
       "PLANT"
     ],
@@ -55,7 +55,7 @@
     "name": "Lili",
     "type": "LION",
     "age": 5,
-    "gender": "F",
+    "gender": "FEMALE",
     "foodTypes": [
       "MEAT"
     ],

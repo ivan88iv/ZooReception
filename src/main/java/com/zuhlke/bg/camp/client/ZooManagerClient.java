@@ -43,8 +43,8 @@ public class ZooManagerClient {
     }
 
     public List<ManagerAnimalDto> extractAllAnimals2() {
-        final var mapper = new ObjectMapper();
-        final InputStream animalsStream = ZooManagerClient.class.getResourceAsStream("animals.json");
+        var mapper = new ObjectMapper();
+        InputStream animalsStream = ZooManagerClient.class.getResourceAsStream("animals.json");
 
         try {
             return mapper.readValue(animalsStream, new TypeReference<>() {});

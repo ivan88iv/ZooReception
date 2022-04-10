@@ -11,6 +11,6 @@ public class CarnivorousPredicate implements Predicate<ManagerAnimalDto> {
     @Override
     public boolean test(ManagerAnimalDto managerAnimalDto) {
         return managerAnimalDto != null && managerAnimalDto.getFoodTypes().length == 1 &&
-                managerAnimalDto.getFoodTypes()[0] == FoodType.MEAT;
+                managerAnimalDto.getFoodTypes()[0] == FoodType.PLANT;
     }
 }

@@ -31,10 +31,9 @@ public class GuideService {
         this.filterGuideService = filterGuideService;
     }
 
-    public List<VisitedAnimalDto> getAnimals(final WalkCriteria criteria) {
-        List<ManagerAnimalDto> managerAnimals = zooManagerClient.extractAllAnimals();
+    public List<VisitedAnimalDto> getAnimals(WalkCriteria criteria) {
+        List<ManagerAnimalDto> managerAnimals = zooManagerClient.extractAllAnimals2();
 
-        // HIX without criteria check
         if (criteria != null && FILTERING_CRITERIA.contains(criteria)) {
             managerAnimals = filterGuideService.filterAnimals(managerAnimals, criteria);
         }
@@ -42,7 +41,7 @@ public class GuideService {
         return convertAnimals(managerAnimals);
     }
 
-    private List<VisitedAnimalDto> convertAnimals(final List<ManagerAnimalDto> managerAnimals) {
+    private List<VisitedAnimalDto> convertAnimals(List<ManagerAnimalDto> managerAnimals) {
         return managerAnimals.stream()
                 .map(animalConverter)
                 .collect(Collectors.toList());

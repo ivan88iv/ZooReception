@@ -15,7 +15,7 @@ public enum OpenApiTags {
 
     private final Tag tag;
 
-    OpenApiTags(final Tag tag) {
+    OpenApiTags(Tag tag) {
         this.tag = tag;
     }
 

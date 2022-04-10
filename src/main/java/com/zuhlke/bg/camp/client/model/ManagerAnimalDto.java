@@ -70,32 +70,32 @@ public class ManagerAnimalDto {
 
         private int cageNumber;
 
-        Builder withName(final String name) {
+        Builder withName(String name) {
             this.name = name;
             return this;
         }
 
-        Builder withType(final String type) {
+        Builder withType(String type) {
             this.type = type;
             return this;
         }
 
-        Builder withAge(final int age) {
+        Builder withAge(int age) {
             this.age = age;
             return this;
         }
 
-        Builder withGender(final Gender gender) {
+        Builder withGender(Gender gender) {
             this.gender = gender;
             return this;
         }
 
-        Builder withFoodTypes(final FoodType[] foodType) {
+        Builder withFoodTypes(FoodType[] foodType) {
             this.foodTypes = foodType;
             return this;
         }
 
-        Builder withCageNumber(final int cageNumber) {
+        Builder withCageNumber(int cageNumber) {
             this.cageNumber = cageNumber;
             return this;
         }

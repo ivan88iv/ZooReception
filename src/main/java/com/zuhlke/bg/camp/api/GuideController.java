@@ -36,23 +36,21 @@ public class GuideController {
 
     @Operation(summary="Returns a suggested walk given a specific criteria")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "The suggested walk given the specified criteria",
-            content = {
-                    @Content(array = @ArraySchema(schema = @Schema(implementation = VisitedAnimalDto.class)))
-            }),
+            @ApiResponse(responseCode = "200", description = "The suggested walk given the specified criteria. " +
+                    "If no criteria is given all animals should be returned.",
+                    content = {@Content(array = @ArraySchema(schema = @Schema(implementation = VisitedAnimalDto.class)))
+                    }),
             @ApiResponse(responseCode = "400", description = "Invalid criteria provided", content = @Content),
             @ApiResponse(responseCode = "404", description = "No animals to visit", content = @Content),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
-    // HIX remove path for optional criteria
-    @GetMapping({"/suggestedWalk/{criteria}", "/suggestedWalk"})
+    @GetMapping("/suggestedWalk/{criteria}")
     public ResponseEntity<List<VisitedAnimalDto>> suggestWalk(
-            @Parameter(description = "The given criteria to find a walk. The parameter is optional and can be nameAsc, " +
-                    "nameDesc, carnivorous, herbivorous and omnivorous")
-            @PathVariable(value = "criteria", required = false) final String rawCriteria) {
-        // HIX -> 400 instead of 500
-        final WalkCriteria criteria = WalkCriteria.fromValue(rawCriteria);
-        final var walk = this.guideService.getAnimals(criteria);
+            @Parameter(description = "The given criteria to find a walk. Can be carnivorous, herbivorous and omnivorous")
+            @PathVariable(value = "criteria", required = false) String rawCriteria) {
+
+        WalkCriteria criteria = WalkCriteria.fromValue(rawCriteria);
+        var walk = this.guideService.getAnimals(criteria);
 
         if(walk.isEmpty()) {
             return ResponseEntity.notFound().build();

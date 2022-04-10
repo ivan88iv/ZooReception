@@ -32,7 +32,7 @@ public class GuideService {
     }
 
     public List<VisitedAnimalDto> getAnimals(WalkCriteria criteria) {
-        List<ManagerAnimalDto> managerAnimals = zooManagerClient.extractAllAnimals2();
+        List<ManagerAnimalDto> managerAnimals = zooManagerClient.extractAllAnimals();
 
         if (criteria != null && FILTERING_CRITERIA.contains(criteria)) {
             managerAnimals = filterGuideService.filterAnimals(managerAnimals, criteria);

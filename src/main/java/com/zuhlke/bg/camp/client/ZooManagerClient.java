@@ -1,7 +1,5 @@
 package com.zuhlke.bg.camp.client;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zuhlke.bg.camp.client.model.ManagerAnimalDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -13,8 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 @Component
@@ -40,16 +36,5 @@ public class ZooManagerClient {
                 baseUrl + GET_ALL_ANIMALS_PATH, HttpMethod.GET,
                 requestEntity, new ParameterizedTypeReference<List<ManagerAnimalDto>>() {});
         return extractedAnimalsResponse.getBody();
-    }
-
-    public List<ManagerAnimalDto> extractAllAnimals2() {
-        var mapper = new ObjectMapper();
-        InputStream animalsStream = ZooManagerClient.class.getResourceAsStream("animals.json");
-
-        try {
-            return mapper.readValue(animalsStream, new TypeReference<>() {});
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

@@ -34,7 +34,7 @@ public class ZooManagerClient {
 
     public List<ManagerAnimalDto> extractAllAnimals() {
         var headers = new HttpHeaders();
-        headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
+        headers.add(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
         var requestEntity = new HttpEntity<Void>(headers);
         var extractedAnimalsResponse = restTemplate.exchange(
                 baseUrl + GET_ALL_ANIMALS_PATH, HttpMethod.GET,

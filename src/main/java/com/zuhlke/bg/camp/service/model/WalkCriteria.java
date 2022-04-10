@@ -5,8 +5,6 @@ import com.zuhlke.bg.camp.api.exception.InvalidCriteriaException;
 import java.util.Arrays;
 
 public enum WalkCriteria {
-    NAME_ASC("nameAsc"),
-    NAME_DESC("nameDesc"),
     CARNIVOROUS("carnivorous"),
     HERBIVOROUS("herbivorous"),
     OMNIVOROUS("omnivorous");
@@ -22,7 +20,7 @@ public enum WalkCriteria {
     }
 
     public static WalkCriteria fromValue(final String value) {
-        if(value == null) {
+        if(value == null || value.isEmpty()) {
             return null;
         }
 

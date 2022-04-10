@@ -16,33 +16,27 @@ public class GuideService {
     private static final Set<WalkCriteria> FILTERING_CRITERIA = Set.of(WalkCriteria.CARNIVOROUS,
             WalkCriteria.HERBIVOROUS, WalkCriteria.OMNIVOROUS);
 
-    private static final Set<WalkCriteria> SORTING_CRITERIA = Set.of(WalkCriteria.NAME_ASC, WalkCriteria.NAME_DESC);
-
     private final ZooManagerClient zooManagerClient;
 
     private final AnimalConverter animalConverter;
 
     private final FilterGuideService filterGuideService;
 
-    private final SortingGuideService sortingGuideService;
-
     GuideService(ZooManagerClient zoomanagerClient,
                  AnimalConverter animalConverter,
-                 FilterGuideService filterGuideService,
-                 SortingGuideService sortingGuideService) {
+                 FilterGuideService filterGuideService) {
 
         this.zooManagerClient = zoomanagerClient;
         this.animalConverter = animalConverter;
         this.filterGuideService = filterGuideService;
-        this.sortingGuideService = sortingGuideService;
     }
 
     public List<VisitedAnimalDto> getAnimals(final WalkCriteria criteria) {
-        List<ManagerAnimalDto> managerAnimals = zooManagerClient.extractAllAnimals2();
-        if (FILTERING_CRITERIA.contains(criteria)) {
+        List<ManagerAnimalDto> managerAnimals = zooManagerClient.extractAllAnimals();
+
+        // HIX without criteria check
+        if (criteria != null && FILTERING_CRITERIA.contains(criteria)) {
             managerAnimals = filterGuideService.filterAnimals(managerAnimals, criteria);
-        } else if (SORTING_CRITERIA.contains(criteria)) {
-            managerAnimals = sortingGuideService.sortAnimals(managerAnimals, criteria);
         }
 
         return convertAnimals(managerAnimals);

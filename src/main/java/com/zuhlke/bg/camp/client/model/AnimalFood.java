@@ -3,6 +3,8 @@ package com.zuhlke.bg.camp.client.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
+
 public class AnimalFood {
     private final String name;
 
@@ -11,7 +13,7 @@ public class AnimalFood {
     private final double pricePerKg;
 
     @JsonCreator
-    AnimalFood(@JsonProperty("name") String name,
+    public AnimalFood(@JsonProperty("name") String name,
                @JsonProperty("type") FoodType type,
                @JsonProperty("pricePerKg") double price) {
 
@@ -30,5 +32,24 @@ public class AnimalFood {
 
     public double getPricePerKg() {
         return pricePerKg;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AnimalFood that = (AnimalFood) o;
+        return Double.compare(that.pricePerKg, pricePerKg) == 0 &&
+                Objects.equals(name, that.name) &&
+                type == that.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, type, pricePerKg);
     }
 }

@@ -26,7 +26,7 @@ public class ZooManagerClient {
 
     private final RestTemplate restTemplate;
 
-    ZooManagerClient(
+    public ZooManagerClient(
             @Value("${zooManager.baseUrl}") String baseUrl,
             RestTemplateBuilder builder) {
         this.baseUrl = baseUrl;

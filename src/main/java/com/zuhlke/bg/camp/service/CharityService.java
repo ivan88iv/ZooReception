@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -23,7 +24,7 @@ public class CharityService {
 
     public AnimalDonationDto calculateFoodBoughtWithDonation(double donation, String animalName) {
         AnimalDetails details = zooManagerClient.getAnimalDetails(animalName);
-        Set<AnimalFood> acceptableFood = details.getAcceptableFood();
+        List<AnimalFood> acceptableFood = details.getAcceptableFood();
 
         if (details.getAcceptableFood().isEmpty()) {
             var unsuccessfulDonationMsg = String.format(

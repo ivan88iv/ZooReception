@@ -3,19 +3,19 @@ package com.zuhlke.bg.camp.client.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Set;
+import java.util.List;
 
 public class AnimalDetails {
     private final String name;
 
     private final String animalType;
 
-    private final Set<AnimalFood> acceptableFood;
+    private final List<AnimalFood> acceptableFood;
 
     @JsonCreator
     AnimalDetails(@JsonProperty("name") String name,
                   @JsonProperty("animalType") String type,
-                  @JsonProperty("acceptableFood") Set<AnimalFood> food) {
+                  @JsonProperty("acceptableFood") List<AnimalFood> food) {
 
         this.name = name;
         this.animalType = type;
@@ -30,7 +30,7 @@ public class AnimalDetails {
         return animalType;
     }
 
-    public Set<AnimalFood> getAcceptableFood() {
+    public List<AnimalFood> getAcceptableFood() {
         return acceptableFood;
     }
 }

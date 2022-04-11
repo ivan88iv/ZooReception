@@ -1,0 +1,24 @@
+{
+  "name": "Batman",
+  "animalType": "PIG",
+  "acceptableFood": [
+    {
+      "name": "Chicken",
+      "type": "MEAT",
+      "price": 5.45,
+      "priceUnit": "KG"
+    },
+    {
+      "name": "Seeds",
+      "type": "PLANT",
+      "price": 2.36,
+      "priceUnit": "L"
+    },
+    {
+      "name": "Corn",
+      "type": "PLANT",
+      "price": 1.52,
+      "priceUnit": "KG"
+    }
+  ]
+}

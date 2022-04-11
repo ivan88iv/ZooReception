@@ -10,16 +10,20 @@ public class AnimalFood {
 
     private final FoodType type;
 
-    private final double pricePerKg;
+    private final double price;
+
+    private final PriceUnit priceUnit;
 
     @JsonCreator
     public AnimalFood(@JsonProperty("name") String name,
-               @JsonProperty("type") FoodType type,
-               @JsonProperty("pricePerKg") double price) {
+                      @JsonProperty("type") FoodType type,
+                      @JsonProperty("price") double price,
+                      @JsonProperty("priceUnit") PriceUnit priceUnit) {
 
         this.name = name;
         this.type = type;
-        this.pricePerKg = price;
+        this.price = price;
+        this.priceUnit = priceUnit;
     }
 
     public String getName() {
@@ -30,8 +34,12 @@ public class AnimalFood {
         return type;
     }
 
-    public double getPricePerKg() {
-        return pricePerKg;
+    public double getPrice() {
+        return price;
+    }
+
+    public PriceUnit getPriceUnit() {
+        return priceUnit;
     }
 
     @Override
@@ -43,13 +51,14 @@ public class AnimalFood {
             return false;
         }
         AnimalFood that = (AnimalFood) o;
-        return Double.compare(that.pricePerKg, pricePerKg) == 0 &&
+        return Double.compare(that.price, price) == 0 &&
                 Objects.equals(name, that.name) &&
-                type == that.type;
+                type == that.type &&
+                priceUnit == that.priceUnit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, type, pricePerKg);
+        return Objects.hash(name, type, price, priceUnit);
     }
 }

@@ -23,7 +23,7 @@ public class CharityService {
     }
 
     public AnimalDonationDto calculateFoodBoughtWithDonation(double donation, String animalName) {
-        AnimalDetails details = zooManagerClient.getAnimalDetails(animalName);
+        AnimalDetails details = zooManagerClient.getAnimalDetails2(animalName);
         List<AnimalFood> acceptableFood = details.getAcceptableFood();
 
         if (details.getAcceptableFood().isEmpty()) {
@@ -42,9 +42,10 @@ public class CharityService {
     }
 
     private FoodToBuy convertToFoodToBuy(AnimalFood animalFood, double donation) {
-        double quantity = donation / animalFood.getPricePerKg();
+        double quantity = donation / animalFood.getPrice();
         double roundedQuantity = roundQuantity(quantity);
-        return new FoodToBuy(animalFood.getName(), animalFood.getType(), roundedQuantity, "kilos");
+        return new FoodToBuy(animalFood.getName(), animalFood.getType(), roundedQuantity,
+                animalFood.getPriceUnit().name());
     }
 
     private double roundQuantity(double quantity) {

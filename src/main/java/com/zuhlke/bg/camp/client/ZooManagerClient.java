@@ -1,5 +1,6 @@
 package com.zuhlke.bg.camp.client;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zuhlke.bg.camp.client.exception.NonExistentAnimalException;
 import com.zuhlke.bg.camp.client.model.AnimalDetails;
 import com.zuhlke.bg.camp.client.model.ManagerAnimalDto;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 @Component
@@ -51,6 +54,18 @@ public class ZooManagerClient {
             return extractedDetailsResponse.getBody();
         } catch(HttpClientErrorException.NotFound nfe) {
             throw new NonExistentAnimalException(name, nfe);
+        }
+    }
+
+    public AnimalDetails getAnimalDetails2(String names) {
+        final var mapper = new ObjectMapper();
+        final InputStream animalsStream = ZooManagerClient.class.getResourceAsStream(
+                "/animal.json");
+
+        try {
+            return mapper.readValue(animalsStream, AnimalDetails.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -13,6 +13,7 @@ import com.zuhlke.bg.camp.client.exception.NonExistentAnimalException;
 import com.zuhlke.bg.camp.client.model.AnimalDetails;
 import com.zuhlke.bg.camp.client.model.AnimalFood;
 import com.zuhlke.bg.camp.client.model.FoodType;
+import com.zuhlke.bg.camp.client.model.PriceUnit;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -96,7 +97,8 @@ public class GetAnimalDetailsContractTest {
                             object.minArrayLike("acceptableFood", 1, 2, (food) -> {
                                 food.stringType("name", "Chicken");
                                 food.stringType("type", "MEAT");
-                                food.decimalType("pricePerKg", 1.33);
+                                food.decimalType("price", 1.33);
+                                food.stringMatcher("priceUnit", "L|KG", "L");
                             });
                         }).build()
                 )
@@ -114,7 +116,7 @@ public class GetAnimalDetailsContractTest {
 
         Assertions.assertEquals(2, details.getAcceptableFood().size());
         Assertions.assertTrue(details.getAcceptableFood().contains(new AnimalFood("Chicken",
-                FoodType.MEAT, 1.33)));
+                FoodType.MEAT, 1.33, PriceUnit.L)));
     }
 
 }

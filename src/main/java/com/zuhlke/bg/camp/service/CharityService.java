@@ -22,7 +22,7 @@ public class CharityService {
     }
 
     public AnimalDonationDto calculateFoodBoughtWithDonation(double donation, String animalName) {
-        AnimalDetails details = zooManagerClient.getAnimalDetails2(animalName);
+        AnimalDetails details = zooManagerClient.getAnimalDetails(animalName);
         Set<AnimalFood> acceptableFood = details.getAcceptableFood();
 
         if (details.getAcceptableFood().isEmpty()) {

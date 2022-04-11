@@ -46,7 +46,7 @@ A demo project used for component and contract testing
     </ol>
 </details>
 
-### Swagger
+### OpenAPI
 
 We will be needing good support for swagger/openApi standard throughout the workshops.
 To do so we can follow two strategies:
@@ -74,3 +74,10 @@ To do so we can follow two strategies:
         <li>The swagger will be visualized in the right panel</li>
     </ol>
 </details>
+
+#### Generate
+The generated OpenApi file can be located under target/openapi.json.
+<br>
+
+To generate a new file representing the current changes in your branch just
+execute <code>mvnw.cmd clean verify</code> from your Windows terminal.

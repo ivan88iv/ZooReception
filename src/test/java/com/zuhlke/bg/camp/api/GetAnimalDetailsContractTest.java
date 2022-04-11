@@ -27,7 +27,7 @@ import java.util.Map;
 @PactTestFor(pactVersion = PactSpecVersion.V3)
 public class GetAnimalDetailsContractTest {
 
-    private static final String CONSUMER_NAME = "ZooReception";
+    private static final String CONSUMER_NAME = "DiviStaroselci";
 
     private static final String PROVIDER_NAME = "ZooManager";
 

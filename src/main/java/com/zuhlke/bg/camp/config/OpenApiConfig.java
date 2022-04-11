@@ -17,6 +17,9 @@ class OpenApiConfig {
                         .title("Zoo Reception API")
                         .description("Zoo Reception application for Camp Purposes")
                         .version("v1.0.0")
-                ).tags(List.of(OpenApiTags.GUIDE_OPERATIONS.getTag()));
+                ).tags(List.of(
+                        OpenApiTags.GUIDE_OPERATIONS.getTag(),
+                        OpenApiTags.CHARITY_OPERATIONS.getTag()
+                ));
     }
 }

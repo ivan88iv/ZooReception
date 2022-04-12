@@ -8,6 +8,7 @@ import au.com.dius.pact.consumer.junit5.PactTestFor;
 import au.com.dius.pact.core.model.PactSpecVersion;
 import au.com.dius.pact.core.model.RequestResponsePact;
 import au.com.dius.pact.core.model.annotations.Pact;
+import au.com.dius.pact.core.model.annotations.PactDirectory;
 import com.zuhlke.bg.camp.client.ZooManagerClient;
 import com.zuhlke.bg.camp.client.exception.NonExistentAnimalException;
 import com.zuhlke.bg.camp.client.model.AnimalDetails;
@@ -24,6 +25,7 @@ import java.util.Map;
 
 @ExtendWith(PactConsumerTestExt.class)
 @PactTestFor(pactVersion = PactSpecVersion.V3)
+@PactDirectory("src/test/resources/pacts")
 public class GetAnimalDetailsContractTest {
 
     private static final String CONSUMER_NAME = "ZooReception";

@@ -1,0 +1,173 @@
+{
+  "consumer": {
+    "name": "ZooReception"
+  },
+  "interactions": [
+    {
+      "description": "A request for animal that does not exist",
+      "providerStates": [
+        {
+          "name": "Animal not found"
+        }
+      ],
+      "request": {
+        "headers": {
+          "Accept": "application/json"
+        },
+        "method": "GET",
+        "path": "/animals/Joro"
+      },
+      "response": {
+        "status": 404
+      }
+    },
+    {
+      "description": "A request for an existing animal with suitable food",
+      "providerStates": [
+        {
+          "name": "Existing animal with one suitable food",
+          "params": {
+            "animalName": "Jimi"
+          }
+        }
+      ],
+      "request": {
+        "headers": {
+          "Accept": "application/json"
+        },
+        "method": "GET",
+        "path": "/animals/Jimi"
+      },
+      "response": {
+        "body": {
+          "acceptableFood": [
+            {
+              "name": "Chicken",
+              "pricePerKg": 1.33,
+              "type": "MEAT"
+            },
+            {
+              "name": "Chicken",
+              "pricePerKg": 1.33,
+              "type": "MEAT"
+            }
+          ],
+          "animalType": "Kangaroo",
+          "name": "Jimi"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$.acceptableFood": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            },
+            "$.acceptableFood[*].name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.acceptableFood[*].pricePerKg": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "decimal"
+                }
+              ]
+            },
+            "$.acceptableFood[*].type": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.animalType": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      }
+    },
+    {
+      "description": "A request for an existing animal without food",
+      "providerStates": [
+        {
+          "name": "Existing animal without suitable food",
+          "params": {
+            "animalName": "Pesho"
+          }
+        }
+      ],
+      "request": {
+        "headers": {
+          "Accept": "application/json"
+        },
+        "method": "GET",
+        "path": "/animals/Pesho"
+      },
+      "response": {
+        "body": {
+          "acceptableFood": [
+
+          ],
+          "animalType": "Chicken",
+          "name": "Pesho"
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$.acceptableFood": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "max": 0
+                }
+              ]
+            },
+            "$.animalType": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-jvm": {
+      "version": "4.3.6"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "ZooManager"
+  }
+}

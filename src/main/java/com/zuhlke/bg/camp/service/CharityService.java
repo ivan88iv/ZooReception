@@ -30,7 +30,7 @@ public class CharityService {
             var unsuccessfulDonationMsg = String.format(
                     "We are sorry. Currently it is not possible to donate to %s(%s)",
                     animalName, details.getAnimalType());
-            return new AnimalDonationDto(unsuccessfulDonationMsg, null);
+            return new AnimalDonationDto(unsuccessfulDonationMsg, Set.of());
         }
 
         Set<FoodToBuy> weCanBuy = acceptableFood.stream()

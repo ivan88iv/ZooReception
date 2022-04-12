@@ -6,7 +6,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:8080",
+      "url": "http://localhost:8092",
       "description": "Generated server url"
     }
   ],
@@ -16,12 +16,13 @@
         "tags": [
           "zoo-manager-controller"
         ],
+        "summary": "Get general data for all animals",
         "operationId": "getAllAnimals",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Animals found",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -52,16 +53,6 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Animal not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "200": {
             "description": "Animal details found",
             "content": {
@@ -71,6 +62,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Animal not found"
           }
         }
       }
@@ -116,6 +110,10 @@
               "M",
               "F"
             ]
+          },
+          "cageNumber": {
+            "type": "integer",
+            "format": "int32"
           },
           "foodTypes": {
             "type": "array",
@@ -168,7 +166,11 @@
               "F"
             ]
           },
-          "acceptableFoods": {
+          "cageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "acceptableFood": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/FoodDto"

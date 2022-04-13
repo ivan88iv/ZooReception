@@ -1,0 +1,33 @@
+[
+  {
+    "name": "Evgeni",
+    "type": "TIGER",
+    "age": 3,
+    "gender": "M",
+    "foodTypes": [
+      "MEAT"
+    ],
+    "cageNumber": 2
+  },
+  {
+    "name": "Roro",
+    "type": "DOG",
+    "age": 1,
+    "gender": "M",
+    "foodTypes": [
+      "MEAT",
+      "PLANT"
+    ],
+    "cageNumber": 3
+  },
+  {
+    "name": "Eli",
+    "type": "ELEPHANT",
+    "age": 13,
+    "gender": "F",
+    "foodTypes": [
+      "PLANT"
+    ],
+    "cageNumber": 14
+  }
+]
